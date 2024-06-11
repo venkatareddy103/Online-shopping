@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login page</title>
+    <style>
+        body {
+            background-image: url('9.jpg'); /* Replace 'background.jpg' with your image file path */
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .login-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(255, 255, 255, 0.7); /* Adjust the alpha value to control the blur effect */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        form {
+            text-align: center;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .error {
+            color: red;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+    </style>
+    <script>
+        function validateForm() {
+            var username = document.forms["loginForm"]["name"].value;
+            var password = document.forms["loginForm"]["pass"].value;
+            var usernameError = document.getElementById("username-error");
+            var passwordError = document.getElementById("password-error");
+
+            usernameError.innerHTML = "";
+            passwordError.innerHTML = "";
+
+            if (username.trim() == "") {
+                usernameError.innerHTML = "Username must not be empty";
+                return false;
+            }
+
+            // Validate username format (only letters and numbers)
+            var usernamePattern = /^[a-zA-Z0-9]+$/;
+            if (!username.match(usernamePattern)) {
+                usernameError.innerHTML = "Username can only contain letters and numbers";
+                return false;
+            }
+
+            if (password.trim() == "") {
+                passwordError.innerHTML = "Password must not be empty";
+                return false;
+            }
+
+            // Minimum length requirement for password
+            if (password.length < 8) {
+                passwordError.innerHTML = "Password must be at least 8 characters long";
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <div class="login-container">
+        <h1>Login Here</h1>
+        <form name="loginForm" action="https://www.flipkart.com/" method="post" onsubmit="return validateForm()">
+            User name: <input type="text" name="name"><span id="username-error" class="error"></span><br>
+            Password: <input type="password" name="pass"><span id="password-error" class="error"></span><br>
+            <input type="submit" value="Submit">
+        </form>  
+    </div>
+</body>
+</html>
